@@ -6,7 +6,7 @@ Write-Host "OS Version: $($OS.Version)"
 # Install Date
 Write-Host "OS Install date: $($OS.InstallDate)"
 # Client/Server
-IF ($os.Caption -like "*Server*") { $server = $true } else { $server = $false}
+IF ($os.Caption -like "*Server*") { $server = $true } else { $server = $false }
 # IP: Interface, ip, gateway, dns
 $Network = Get-NetAdapter | Where-Object | Get-NetIPConfiguration
 # Last updates
@@ -14,14 +14,14 @@ $Updates = Get-HotFix | Sort InstalledOn -Descending | Select-Object -First 5
 # It would be nice if could run this remotely
 
 $props = [pscustomobject]@{
-'OSName' = $OS.Caption
-'OSVersion' = $OS.Version
-'OSInstallDate' = $OS.InstallDate
-'isServer' = $Server
-'IPv4Address' = $Network.IPv4Address.IPAddress
-'Gateway' = $Network.IPv4DefaultGateway.nexthop
-'DNS' = $Network.DNSServer | Where-Object | Select-Object ServerADdresses -ExpandProperty ServerAddresses
-'Updates' = $Updates.HotfixID | Out-String
+    'OSName'        = $OS.Caption
+    'OSVersion'     = $OS.Version
+    'OSInstallDate' = $OS.InstallDate
+    'isServer'      = $Server
+    'IPv4Address'   = $Network.IPv4Address.IPAddress
+    'Gateway'       = $Network.IPv4DefaultGateway.nexthop
+    'DNS'           = $Network.DNSServer | Where-Object | Select-Object ServerADdresses -ExpandProperty ServerAddresses
+    'Updates'       = $Updates.HotfixID | Out-String
 }
 # Network: Can I ping gateway, DNS Server, website
 $pingGateway = Test-NetConnection -ComputerName $props.Gateway -InformationLevel Quiet

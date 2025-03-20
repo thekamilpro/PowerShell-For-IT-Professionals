@@ -51,8 +51,8 @@ $Username
 vssadmin list shadows
 vssadmin list shadows | Select-String 'creation time:'
 vssadmin list shadows | Select-String 'creation time:' -Context 1
-vssadmin list shadows | Select-String 'creation time:' -Context 0,4
-vssadmin list shadows | Select-String 'creation time:' -Context 1,4
+vssadmin list shadows | Select-String 'creation time:' -Context 0, 4
+vssadmin list shadows | Select-String 'creation time:' -Context 1, 4
 
 # Same with text files
 Get-Content C:\Windows10Upgrade\upgrader_default.log

@@ -25,12 +25,12 @@ explorer .
 # Websites
 $Website.Links
 $Website.Links | where
-$Website.Links | where | select data-bbc-title,href
+$Website.Links | where | select data-bbc-title, href
 
 # Resolving shortcut urls
 $Website.Images
 $Website.images | where
-$Website.images | where | ForEach-Object {Start-BitsTransfer -Source $_.src -Destination "$($_.alt).jpg" }
+$Website.images | where | ForEach-Object { Start-BitsTransfer -Source $_.src -Destination "$($_.alt).jpg" }
 ls
 explorer .
 
@@ -57,11 +57,11 @@ $request.Content
 $request.Content | ConvertFrom-Json
 
 $body = @{
-password = @{
-"payload" = "mysecretpassword"
-"expire_after_days" = 2
-"expire_after_views" = 5
-}
+    password = @{
+        "payload"            = "mysecretpassword"
+        "expire_after_days"  = 2
+        "expire_after_views" = 5
+    }
 }
 $body
 $body.password
@@ -69,11 +69,11 @@ $Body | ConvertTo-Json
 $Body
 
 $body = @{
-password = @{
-"payload" = "mysecretpassword"
-"expire_after_days" = 2
-"expire_after_views" = 5
-}
+    password = @{
+        "payload"            = "mysecretpassword"
+        "expire_after_days"  = 2
+        "expire_after_views" = 5
+    }
 } | ConvertTo-Json
 
 Invoke-WebRequest -Uri $uri -Method "Post" -ContentType "application/json" -Body $body
@@ -83,10 +83,10 @@ Invoke-WebRequest -Uri $uri -Method "Post" -ContentType "application/json" -Body
 $Uri = "https://pwpush.com/p.json"
 
 $params = @{
-uri = $uri
-ContentType = "application/json"
-Method = "Post"
-body = $body
+    uri         = $uri
+    ContentType = "application/json"
+    Method      = "Post"
+    body        = $body
 }
 $password = Invoke-RestMethod @params
 $password

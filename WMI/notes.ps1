@@ -16,7 +16,7 @@ Get-CimClass -Namespace root/CIMV2 -ClassName Win32_OperatingSystem
 
 Get-CimInstance -Namespace root/CIMV2 -ClassName Win32_OperatingSystem
 
-Get-CimInstance -Namespace root/CIMV2 -ClassName Win32_OperatingSystem| FL *
+Get-CimInstance -Namespace root/CIMV2 -ClassName Win32_OperatingSystem | FL *
 
 #Let's call a method
 Get-CimClass -Namespace root/CIMV2 -ClassName Win32_OperatingSystem
